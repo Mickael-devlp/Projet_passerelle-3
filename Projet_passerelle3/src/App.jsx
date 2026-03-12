@@ -4,7 +4,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Home from "./pages/home";
 
-// Composant pour protéger les routes
+// Composant pour protéger les routes et mettre obligatoirement la page login si l'user n'est pas co
 const PrivateRoute = ({ children }) => {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" />;

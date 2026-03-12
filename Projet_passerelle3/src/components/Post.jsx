@@ -20,7 +20,7 @@ import { useAuth } from "../context/AuthContext";
 const Post = ({ post }) => {
   const { user } = useAuth();
 
-  // États de l'interface, création de toutes mes const
+  // États de l'interface, création de toutes mes variables
   const [showOptions, setShowOptions] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [showCommentInput, setShowCommentInput] = useState(false);
@@ -30,7 +30,8 @@ const Post = ({ post }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
 
-  const isOwner = user?.uid === post.authorId; // Petite sécurié, seul l'auteur du message peut modifier (pas testé avec plusieurs user, à test)
+  // Petite sécurié, seul l'auteur du message peut modifier (pas testé avec plusieurs user, à test en réseau o uen ligne)
+  const isOwner = user?.uid === post.authorId;
   const hasLiked = post.likedBy?.includes(user?.uid);
 
   const dateLabel = post.createdAt
@@ -52,7 +53,7 @@ const Post = ({ post }) => {
     return () => unsubscribe();
   }, [post.id]);
 
-  //  ACTIONS pour les like, avec un coeur qui se rempli si like
+  //  Actions :  pour les like, avec un coeur qui se rempli si like
   const handleLike = async () => {
     const postRef = doc(db, "posts", post.id);
     try {
@@ -144,13 +145,16 @@ const Post = ({ post }) => {
 
           {/* BARRE D'ACTIONS */}
           <div className="flex justify-between mt-3 max-w-xs text-gray-500 text-sm">
+            {/* Bouton pour écrire un new commentaire */}
             <button
               onClick={() => setShowCommentInput(!showCommentInput)}
               className="hover:text-sky-500 flex items-center gap-1"
             >
               💬 <span>{comments.length}</span>
             </button>
+            {/* Bouton "partager" juste mis mais qui ne renvoi à rien, liste de tâche à faire */}
             <button className="hover:text-green-500">🔁</button>
+            {/* Effet, juste le 0 devient rose au survol et lors du clic du coeur, changement d'émote pour un coeur plein rouge */}
             <button
               onClick={handleLike}
               className={`flex items-center gap-1 ${hasLiked ? "text-pink-500" : "hover:text-pink-500"}`}

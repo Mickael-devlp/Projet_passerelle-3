@@ -14,7 +14,7 @@ const TweetBox = () => {
     setLoading(true);
     try {
       await addDoc(collection(db, "posts"), {
-        //En utilisant addDoc on permet à firebase de généréer l'ID, on n'a pas à s'en occuper
+        //En utilisant addDoc, on permet à firebase de généréer l'ID, on n'a pas à s'en occuper
         text: data.content,
         authorId: user.uid,
         authorName: user.username,

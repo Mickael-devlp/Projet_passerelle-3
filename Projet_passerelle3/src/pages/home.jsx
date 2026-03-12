@@ -37,6 +37,7 @@ const Home = () => {
             Cocey
           </h1>
           <nav className="space-y-2">
+            {/* icone à récuperer et mettre pour les 3 autres */}
             <NavItem label="🏠 Accueil" active />
             <NavItem label="Notifications" />
             <NavItem label="Messages" />
@@ -93,8 +94,10 @@ const Home = () => {
   );
 };
 
-// Composants internes DRY // Je n'ai pas mis de composant dans global.css car d'après deux vidéos, c'est obsolète et en mettant directement dans Home, permet une meilleure gestion
-// si il n'y a pas beaucoup de ligne. A voir la correction.
+/*
+ Composants internes DRY / Je n'ai pas mis de composant dans global.css car d'après deux vidéos, c'est obsolète et en mettant directement dans Home, permet une meilleure gestion
+si il n'y a pas beaucoup de ligne. A voir la correction. 
+*/
 const NavItem = ({ label, active }) => (
   <div
     className={`flex items-center p-3 px-4 rounded-full hover:bg-gray-100 cursor-pointer transition text-xl ${active ? "font-bold" : "font-medium"}`}

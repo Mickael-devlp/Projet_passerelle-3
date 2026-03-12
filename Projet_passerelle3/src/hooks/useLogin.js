@@ -17,7 +17,7 @@ export const useLogin = () => {
   const onSubmit = async (data) => {
     console.log("Tentative de connexion en cours..."); // Pour vérifier que le bouton fonctionne
     try {
-      // 1. Authentification
+      // Authentification
       const userCredential = await signInWithEmailAndPassword(
         auth,
         data.email.trim(),
@@ -26,7 +26,7 @@ export const useLogin = () => {
       const user = userCredential.user;
       console.log("Utilisateur authentifié :", user.uid);
 
-      // 2. Récupération du profil dans Firestore
+      // Récupération du profil dans Firestore
       const userDoc = await getDoc(doc(db, "users", user.uid));
 
       if (userDoc.exists()) {

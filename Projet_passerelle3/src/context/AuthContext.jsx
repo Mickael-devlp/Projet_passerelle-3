@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// 1. Création du contexte
+// Création du contexte
 const AuthContext = createContext();
 
-// 2. Le Provider (le composant qui entoure l'appli)
+// Le Provider
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Simulation d'une vérification de session (en attendant Firebase)
+  // Simulation d'une vérification de session
   useEffect(() => {
     // Permet de garder la session active même en refraichissant avec f5 ou en fermant la page.
     const savedUser = localStorage.getItem("cocey_user");
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   // Utilisation de Authconext.provider et d'avoir déclarer const Authprovider, permet à toutes mes pages d'utiliser les composants comme login, logout...
   return (
     <AuthContext.Provider value={{ user, login, logout, loading }}>
-      {/* Obligé de mettre !loadind ans children car React va trop vite et ma co avec firebase est lente. J'avais souvent rien... */}
+      {/* Obligé de mettre !loadind and children car React va trop vite et ma co avec firebase est lente. J'avais souvent rien... */}
       {!loading && children}
     </AuthContext.Provider>
   );
